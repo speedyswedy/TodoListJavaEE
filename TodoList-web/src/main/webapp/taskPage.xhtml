@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3c.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>TODO supply a title</title>
+        <p:resources />
+    </h:head>
+    <h:body>
+        <p>
+            <f:view>
+                <h:form>
+                    <h1><h:outputText value="List"/></h1>
+                    <h:dataTable value="#{task.allTasks}" var="item">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Id"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Label"/>
+                            </f:facet>
+                            <h:outputText value="#{item.label}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                            </f:facet>
+                            <h:commandButton type="submit" value="Delete" action="#{task.delete(item.id)}"></h:commandButton>
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
+            </f:view>
+        </p>
+
+        <h2>Add a new task</h2>
+
+        <p:panel header="Create Task" style="width: 700;">
+            <h:form>
+                <h:panelGrid columns="2" cellpadding="2">
+                    <h:inputText value="#{task.label}" label="Label"></h:inputText>
+                    <h:commandButton type="submit" value="Create" action="#{task.create()}"></h:commandButton>
+                </h:panelGrid>
+            </h:form>
+        </p:panel>
+    </h:body>
+</html>
